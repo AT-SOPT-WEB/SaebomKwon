@@ -1,0 +1,196 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 70px;
+}
+
+header button {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+main {
+  padding-top: 130px;
+  padding-bottom: 30px;
+}
+
+aside {
+  width: 150px;
+  padding: 20px 10px 0 10px;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+
+  position: fixed;
+  left: 20px;
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+  border: 1px gray solid;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+aside li {
+  padding: 5px 0;
+}
+
+aside li:hover {
+  background-color: rgb(236, 235, 235);
+}
+
+aside li a {
+  color: black;
+  text-decoration: none;
+}
+
+main #content {
+  margin-left: 200px;
+  padding-right: 20px;
+}
+
+main #top-section {
+  width: fit-content;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 10px;
+}
+
+#top-section .grid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box1 {
+  grid-row: 1;
+  grid-column: 1 / span 2;
+}
+
+.box2 {
+  grid-row: 2;
+  grid-column: 1 / span 2;
+}
+
+.box3 {
+  grid-row: 1 / 3;
+  grid-column: 3 / span 2;
+}
+
+.box4 {
+  grid-row: 3 / 5;
+  grid-column: 1 / 4;
+}
+
+.box5 {
+  grid-row: 3 / 5;
+  grid-column: 4;
+}
+
+#main-section h3 {
+  margin-bottom: -10px;
+}
+#main-section {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+#main-section .flex-container {
+  padding: 50px 10px;
+  background-color: rgb(244, 244, 244);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#main-section .profile {
+  width: 200px;
+  height: 300px;
+  padding: 20px;
+  background-color: white;
+  text-align: center;
+
+  transition: transform 0.3s ease;
+}
+
+.profile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.profile .textBox {
+  padding: 10px;
+}
+.textBox span:hover {
+  color: red;
+  cursor: pointer;
+}
+
+main #infinite-banner {
+  width: 100%;
+  overflow: hidden;
+  padding: 30px;
+}
+
+.banner {
+  padding-right: 20px;
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  animation: scrollBanner 10s linear infinite;
+}
+
+.banner img {
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@keyframes scrollBanner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+footer {
+  padding: 0 20px;
+  text-align: center;
+}
