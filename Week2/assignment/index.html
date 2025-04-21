@@ -11,10 +11,10 @@
     <title>2주차 과제</title>
   </head>
   <body>
-    <div class="tag-container">
-      <button class="button">전체</button>
-      <button class="button">완료됨</button>
-      <button class="button">미완료</button>
+    <div class="filter-container">
+      <button class="button all">전체</button>
+      <button class="button finished">완료됨</button>
+      <button class="button unfinished">미완료</button>
       <button class="button">
         중요도<span class="material-symbols-outlined"> arrow_drop_down </span>
       </button>
@@ -46,20 +46,7 @@
             <th class="todo">할 일</th>
           </tr>
         </thead>
-        <tbody class="table-body">
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>1</td>
-            <td>❌</td>
-            <td>과제하기</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>2</td>
-            <td>✅</td>
-            <td>밥 먹기</td>
-          </tr>
-        </tbody>
+        <tbody class="table-body"></tbody>
       </table>
     </main>
     <script type="module" src="index.js"></script>
