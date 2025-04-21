@@ -76,3 +76,24 @@ td {
   border: 1px solid #c9c9c9;
   padding: 0.5rem; /* 보기 좋게 패딩 추가 */
 }
+
+.modal {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 200px;
+  height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal.hidden {
+  display: none;
+}

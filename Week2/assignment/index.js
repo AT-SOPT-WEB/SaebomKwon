@@ -6,17 +6,16 @@ if (!localStorage.getItem("todos")) {
 
 const todoItems = JSON.parse(localStorage.getItem("todos")) || [];
 const table = document.querySelector(".table-body");
-const filterButtons = document.querySelectorAll(".tag-container .button");
 
 function renderTodos(todos) {
   table.innerHTML = "";
-
   todos.forEach((todo) => {
     const tr = document.createElement("tr");
 
     const tdCheckbox = document.createElement("td");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.dataset.id = todo.id;
     tdCheckbox.appendChild(checkbox);
 
     const tdPriority = document.createElement("td");
@@ -52,3 +51,88 @@ document.querySelector(".unfinished").addEventListener("click", () => {
 });
 
 renderTodos(todoItems);
+
+document.querySelector(".add").addEventListener("click", () => {
+  const input = document.querySelector(".input");
+  const item = input.value.trim();
+
+  const prioritySelect = document.querySelector(".priority");
+  const priority = prioritySelect.value;
+
+  if (!item || !priority) {
+    alert("할 일과 중요도를 모두 입력해주세요!");
+    return;
+  }
+
+  const todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+  const newId = todos[todos.length - 1].id + 1;
+
+  const newTodo = {
+    id: newId,
+    title: item,
+    priority: Number(priority),
+    completed: false,
+  };
+
+  todos.push(newTodo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  renderTodos(todos);
+
+  input.value = "";
+  prioritySelect.value = "";
+});
+
+document.querySelector(".delete").addEventListener("click", () => {
+  const checkboxes = document.querySelectorAll(
+    "input[type='checkbox']:checked"
+  );
+  const checkedTodo = Array.from(checkboxes).map((checkbox) =>
+    Number(checkbox.dataset.id)
+  );
+
+  let todos = JSON.parse(localStorage.getItem("todos")) || [];
+  todos = todos.filter((todo) => !checkedTodo.includes(todo.id));
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+  renderTodos(todos);
+});
+
+document.querySelector(".done").addEventListener("click", () => {
+  const checkboxes = document.querySelectorAll(
+    "input[type='checkbox']:checked"
+  );
+  const checkedTodo = Array.from(checkboxes).map((checkbox) =>
+    Number(checkbox.dataset.id)
+  );
+
+  let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+  const alreadyDone = todos.some(
+    (todo) => checkedTodo.includes(todo.id) && todo.completed
+  );
+
+  if (alreadyDone) {
+    openModal();
+    return;
+  }
+
+  todos = todos.map((todo) => {
+    if (checkedTodo.includes(todo.id)) {
+      return { ...todo, completed: true };
+    }
+    return todo;
+  });
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+  renderTodos(todos);
+});
+
+function openModal() {
+  document.querySelector(".modal").classList.remove("hidden");
+}
+
+document.querySelector(".close").addEventListener("click", () => {
+  document.querySelector(".modal").classList.add("hidden");
+});
