@@ -84,6 +84,17 @@ document.querySelector(".add").addEventListener("click", () => {
   prioritySelect.value = "";
 });
 
+document.querySelector(".check-all").addEventListener("change", (e) => {
+  const checked = e.target.checked;
+  const checkboxes = document.querySelectorAll(
+    ".table-body input[type='checkbox']"
+  );
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = checked;
+  });
+});
+
 document.querySelector(".delete").addEventListener("click", () => {
   const checkboxes = document.querySelectorAll(
     "input[type='checkbox']:checked"
