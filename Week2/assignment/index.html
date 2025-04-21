@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>2주차 과제</title>
+  </head>
+  <body>
+    <div class="tag-container">
+      <span class="tag">전체</span>
+      <span class="tag">완료됨</span>
+      <span class="tag">미완료</span>
+      <span class="tag">중요도</span>
+    </div>
+
+    <main>
+      <div class="input-container">
+        <input type="text" class="input" placeholder="할 일을 입력하세요" />
+        <select class="priority">
+          <option value="">중요도 선택</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <button class="button">추가</button>
+      </div>
+
+      <div class="button-container">
+        <button class="button">삭제</button>
+        <button class="button">완료</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" /></th>
+            <th>중요도</th>
+            <th>완료됨</th>
+            <th>할 일</th>
+          </tr>
+        </thead>
+        <tbody id="todo-table-body">
+          <tr>
+            <td><input type="checkbox" /></td>
+            <td>1</td>
+            <td>❌</td>
+            <td>과제하기</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" /></td>
+            <td>2</td>
+            <td>✅</td>
+            <td>밥 먹기</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
