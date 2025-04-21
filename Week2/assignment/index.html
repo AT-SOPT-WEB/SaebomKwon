@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_drop_down"
+    />
     <title>2주차 과제</title>
   </head>
   <body>
     <div class="tag-container">
-      <span class="tag">전체</span>
-      <span class="tag">완료됨</span>
-      <span class="tag">미완료</span>
-      <span class="tag">중요도</span>
+      <button class="button">전체</button>
+      <button class="button">완료됨</button>
+      <button class="button">미완료</button>
+      <button class="button">
+        중요도<span class="material-symbols-outlined"> arrow_drop_down </span>
+      </button>
     </div>
 
     <main>
@@ -31,16 +37,16 @@
         <button class="button">완료</button>
       </div>
 
-      <table>
-        <thead>
-          <tr>
+      <table class="table-container">
+        <thead class="table-head">
+          <tr class="todo-container">
             <th><input type="checkbox" /></th>
             <th>중요도</th>
             <th>완료됨</th>
-            <th>할 일</th>
+            <th class="todo">할 일</th>
           </tr>
         </thead>
-        <tbody id="todo-table-body">
+        <tbody class="table-body">
           <tr>
             <td><input type="checkbox" /></td>
             <td>1</td>

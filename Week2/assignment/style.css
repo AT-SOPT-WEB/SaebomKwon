@@ -10,13 +10,6 @@ body {
   gap: 10px;
 }
 
-.tag {
-  padding: 0.3rem 0.7rem;
-  border-radius: 5px;
-  background-color: rgb(255, 0, 89);
-  color: white;
-}
-
 main {
   padding: 10px;
   border-radius: 10px;
@@ -31,28 +24,55 @@ main {
 }
 
 .input {
-  padding: 0.5rem 0.7rem;
+  padding: 8px 10px;
   border-radius: 5px;
   border: 1px solid #c9c9c9;
   flex-grow: 1;
 }
 
 .priority {
-  padding: 0.4rem 0.7rem;
+  padding: 8px 10px;
   border-radius: 5px;
   border: 1px solid #c9c9c9;
 }
 
 .button-container {
+  padding-bottom: 10px;
   display: flex;
   justify-content: end;
   gap: 10px;
 }
 
 .button {
-  padding: 0.3rem 0.7rem;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   background-color: rgb(255, 0, 89);
   color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.table-container {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.table-head {
+  background-color: rgb(255, 0, 89);
+  color: white;
+}
+
+.table-body {
+}
+
+th,
+td {
+  border: 1px solid #c9c9c9;
+  padding: 0.5rem; /* 보기 좋게 패딩 추가 */
 }
