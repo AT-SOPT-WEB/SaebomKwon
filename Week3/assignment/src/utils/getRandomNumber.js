@@ -6,5 +6,6 @@ export function getRandomNumber() {
       randomNumbers.push(random);
     }
   }
+  console.log(randomNumbers);
   return randomNumbers;
 }

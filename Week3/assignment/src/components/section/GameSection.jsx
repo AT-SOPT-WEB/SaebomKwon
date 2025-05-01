@@ -6,6 +6,15 @@ export default function GameSection({ inputNumber, onResult, resetGame }) {
   const [answer, setAnswer] = useState([]);
   const [results, setResults] = useState([]);
 
+  const resetTimer = (message, delay) => {
+    onResult(message);
+    setTimeout(() => {
+      setAnswer(getRandomNumber());
+      setResults([]);
+      onResult("");
+      resetGame();
+    }, delay);
+  };
   useEffect(() => {
     setAnswer(getRandomNumber());
   }, []);
@@ -31,17 +40,11 @@ export default function GameSection({ inputNumber, onResult, resetGame }) {
     setResults((prev) => [...prev, newResult]);
 
     if (strike === 3) {
-      onResult("🎉 정답입니다! 3초 뒤에 게임이 리셋됩니다.");
-
-      setTimeout(() => {
-        setAnswer(getRandomNumber());
-        setResults([]);
-        onResult("");
-
-        resetGame();
-      }, 3000);
+      resetTimer("🎉 정답입니다! 3초 뒤에 게임이 리셋됩니다.", 3000);
+    } else if (results.length + 1 >= 10) {
+      resetTimer("게임에서 패배하셨습니다 😹", 5000);
     } else {
-      onResult(`${strike} 스크라이크 ${ball} 볼`);
+      onResult(`${strike} 스트라이크 ${ball} 볼`);
     }
   }, [inputNumber, answer]);
 
