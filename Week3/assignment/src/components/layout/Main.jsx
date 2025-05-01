@@ -12,45 +12,60 @@ export default function Main({ activeTab }) {
       ? "3자리 숫자를 입력해주세요."
       : "깃허브 검색 or 숫자 야구 버튼을 클릭해주세요!";
 
+  const [tempInput, setTempInput] = useState("");
   const [inputNumber, setInputNumber] = useState("");
   const [error, setError] = useState("");
+  const [resultMessage, setResultMessage] = useState("");
 
   const handleInputNumber = (e) => {
-    setInputNumber(e.target.value);
+    setTempInput(e.target.value);
   };
 
   const submitInputNumber = (e) => {
     if (e.key === "Enter") {
-      const errorMessage = inputValid(inputNumber);
+      const errorMessage = inputValid(tempInput);
 
       if (errorMessage) {
         setError(errorMessage);
+        setResultMessage("");
         return;
       }
 
       setError("");
+      setInputNumber(tempInput);
+      e.target.value = "";
     }
+  };
+
+  const resetGame = () => {
+    setInputNumber("");
+    setTempInput("");
+    setResultMessage("");
   };
 
   return (
     <main className="h-screen flex flex-col justify-center items-center gap-4">
-      {activeTab === "game" && (
-        <>
-          <Input
-            placeholder={placeholder}
-            value={inputNumber}
-            onChange={handleInputNumber}
-            onKeyDown={submitInputNumber}
-          />
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-        </>
+      <Input
+        placeholder={placeholder}
+        value={inputNumber}
+        onChange={handleInputNumber}
+        onKeyDown={submitInputNumber}
+      />
+      {activeTab === "game" && error && (
+        <p className="py-3 text-primary font-semibold">{error}</p>
       )}
-
+      {activeTab === "game" && resultMessage && (
+        <p className="py-3 text-primary text-lg font-bold">{resultMessage}</p>
+      )}
       {activeTab === "github" ? (
         <GithubSection />
-      ) : (
-        <GameSection inputNumber={inputNumber} />
-      )}
+      ) : activeTab === "game" ? (
+        <GameSection
+          inputNumber={inputNumber}
+          onResult={setResultMessage}
+          resetGame={resetGame}
+        />
+      ) : null}
     </main>
   );
 }
