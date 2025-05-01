@@ -1,27 +1,17 @@
 import { useState, useEffect } from "react";
+import { getRandomNumber } from "../../utils/getRandomNumber";
 import List from "../List";
 
 export default function GameSection({ inputNumber, onResult, resetGame }) {
   const [answer, setAnswer] = useState([]);
   const [results, setResults] = useState([]);
 
-  const getRandomNumber = () => {
-    const randomNumbers = [];
-    while (randomNumbers.length < 3) {
-      const random = Math.floor(Math.random() * 10);
-      if (!randomNumbers.includes(random)) {
-        randomNumbers.push(random);
-      }
-    }
-    console.log(randomNumbers);
-    return randomNumbers;
-  };
-
   useEffect(() => {
     setAnswer(getRandomNumber());
   }, []);
 
   useEffect(() => {
+    if (!inputNumber) return;
     const inputEachNumber = inputNumber.toString().split("");
 
     let strike = 0;
