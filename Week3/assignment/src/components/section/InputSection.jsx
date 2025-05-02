@@ -2,18 +2,21 @@ import { useState } from "react";
 import Input from "../Input";
 import GameSection from "./GameSection";
 import { inputValid } from "../../utils/validation";
+import GithubSection from "./GithubSection";
 
-export default function InputSection({ activeTab, children }) {
+export default function InputSection({ activeTab }) {
   const [tempInput, setTempInput] = useState("");
-  const [inputNumber, setInputNumber] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
   const [resultMessage, setResultMessage] = useState("");
 
-  const handleInputNumber = (e) => setTempInput(e.target.value);
+  const [isCardOpen, setIsCardOpen] = useState(false);
 
-  const submitInputNumber = (e) => {
+  const handleInput = (e) => setTempInput(e.target.value);
+
+  const submitInput = (e) => {
     if (e.key === "Enter") {
-      const errorMessage = inputValid(tempInput);
+      const errorMessage = inputValid(tempInput, activeTab);
       e.target.value = "";
 
       if (errorMessage) {
@@ -22,13 +25,15 @@ export default function InputSection({ activeTab, children }) {
         return;
       }
       setError("");
-      setInputNumber(tempInput);
+      setInputValue(tempInput);
       setTempInput("");
+
+      if (activeTab === "github") setIsCardOpen(true);
     }
   };
 
   const resetGame = () => {
-    setInputNumber("");
+    setInputValue("");
     setTempInput("");
     setResultMessage("");
   };
@@ -38,23 +43,32 @@ export default function InputSection({ activeTab, children }) {
       <Input
         activeTab={activeTab}
         value={tempInput}
-        onChange={handleInputNumber}
-        onKeyDown={submitInputNumber}
+        onChange={handleInput}
+        onKeyDown={submitInput}
       />
-      {activeTab === "game" && error && (
-        <p className="py-3 text-primary font-semibold">{error}</p>
+
+      {activeTab === "game" && (
+        <>
+          {error && <p className="py-3 text-primary font-semibold">{error}</p>}
+          {resultMessage && (
+            <p className="py-3 text-primary text-lg font-bold">
+              {resultMessage}
+            </p>
+          )}
+          <GameSection
+            inputNumber={inputValue}
+            onResult={setResultMessage}
+            resetGame={resetGame}
+          />
+        </>
       )}
-      {activeTab === "game" && resultMessage && (
-        <p className="py-3 text-primary text-lg font-bold">{resultMessage}</p>
-      )}
-      {activeTab === "game" ? (
-        <GameSection
-          inputNumber={inputNumber}
-          onResult={setResultMessage}
-          resetGame={resetGame}
+
+      {activeTab === "github" && (
+        <GithubSection
+          userId={inputValue}
+          isCardOpen={isCardOpen}
+          closeCard={() => setIsCardOpen(false)}
         />
-      ) : (
-        children
       )}
     </>
   );
