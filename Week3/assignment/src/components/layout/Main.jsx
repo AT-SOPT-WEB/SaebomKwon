@@ -5,10 +5,7 @@ import GameSection from "../section/GameSection";
 export default function Main({ activeTab }) {
   return (
     <main className="h-screen flex flex-col justify-center items-center gap-4">
-      <InputSection activeTab={activeTab}>
-        {activeTab === "github" && <GithubSection />}
-        {activeTab === "game" && <GameSection />}
-      </InputSection>
+      <InputSection activeTab={activeTab} />
     </main>
   );
 }

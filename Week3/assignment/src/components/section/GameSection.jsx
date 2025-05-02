@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { getRandomNumber } from "../../utils/getRandomNumber";
+import {
+  GAME_SUCCESS_MESSAGE,
+  GAME_FAIL_MESSAGE,
+} from "../../constants/message";
 import List from "../List";
 
 export default function GameSection({ inputNumber, onResult, resetGame }) {
@@ -40,9 +44,9 @@ export default function GameSection({ inputNumber, onResult, resetGame }) {
     setResults((prev) => [...prev, newResult]);
 
     if (strike === 3) {
-      resetTimer("🎉 정답입니다! 3초 뒤에 게임이 리셋됩니다.", 3000);
+      resetTimer(GAME_SUCCESS_MESSAGE, 3000);
     } else if (results.length + 1 >= 10) {
-      resetTimer("게임에서 패배하셨습니다 😹", 5000);
+      resetTimer(GAME_FAIL_MESSAGE, 5000);
     } else {
       onResult(`${strike} 스트라이크 ${ball} 볼`);
     }

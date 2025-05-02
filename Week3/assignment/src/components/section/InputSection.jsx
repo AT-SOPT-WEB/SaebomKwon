@@ -4,13 +4,6 @@ import GameSection from "./GameSection";
 import { inputValid } from "../../utils/validation";
 
 export default function InputSection({ activeTab, children }) {
-  const placeholder =
-    activeTab === "github"
-      ? "Github 프로필을 검색해보세요."
-      : activeTab === "game"
-      ? "3자리 숫자를 입력해주세요."
-      : "깃허브 검색 or 숫자 야구 버튼을 클릭해주세요!";
-
   const [tempInput, setTempInput] = useState("");
   const [inputNumber, setInputNumber] = useState("");
   const [error, setError] = useState("");
@@ -43,7 +36,7 @@ export default function InputSection({ activeTab, children }) {
   return (
     <>
       <Input
-        placeholder={placeholder}
+        activeTab={activeTab}
         value={tempInput}
         onChange={handleInputNumber}
         onKeyDown={submitInputNumber}
