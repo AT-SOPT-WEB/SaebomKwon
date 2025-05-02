@@ -4,7 +4,7 @@ export default function List({ results }) {
       {results.map((result, idx) => (
         <li
           key={idx}
-          className="w-2/3 p-4 border-2 border-primary rounded-2xl text-center"
+          className="w-full p-4 border-2 border-primary rounded-2xl text-center"
         >
           {result}
         </li>

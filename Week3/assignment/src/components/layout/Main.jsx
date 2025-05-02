@@ -1,10 +1,8 @@
 import InputSection from "../section/InputSection";
-import GithubSection from "../section/GithubSection";
-import GameSection from "../section/GameSection";
 
 export default function Main({ activeTab }) {
   return (
-    <main className="h-screen flex flex-col justify-center items-center gap-4">
+    <main className="w-2/3 pt-20 m-auto gap-4 text-center">
       <InputSection activeTab={activeTab} />
     </main>
   );
