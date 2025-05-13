@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 import routePath from "@/routes/routePath";
 import { useState } from "react";
 
-const PLACEHOLDER = "닉네임을 입력해주세요";
+const NICKNAME_PLACEHOLDER = "닉네임을 입력해주세요";
 
 export default function NicknameForm() {
   const [nickname, setNickname] = useState<string>("");
@@ -22,7 +22,11 @@ export default function NicknameForm() {
   return (
     <>
       <h3 css={labelStyle}>닉네임</h3>
-      <Input name="nickname" placeholder={PLACEHOLDER} onChange={handleInput} />
+      <Input
+        name="nickname"
+        placeholder={NICKNAME_PLACEHOLDER}
+        onChange={handleInput}
+      />
       <Button label="다음" onClick={handleSubmit} disabled={nickname === ""} />
     </>
   );

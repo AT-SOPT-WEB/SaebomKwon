@@ -16,7 +16,7 @@ export default function SignupPage() {
       case 2:
         return <PwForm onNext={handleNext} />;
       case 3:
-        return <NicknameForm onNext={handleNext} />;
+        return <NicknameForm />;
     }
   };
 

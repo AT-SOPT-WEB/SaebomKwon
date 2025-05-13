@@ -6,6 +6,9 @@ import LinkItem from "@/components/LinkItem";
 import routePath from "@/routes/routePath";
 import { useState } from "react";
 
+import { login } from "@/apis/apiRequest";
+import { useNavigate } from "react-router-dom";
+
 const ID_PLACEHOLDER = "아이디";
 const PW_PLACEHOLDER = "비밀번호";
 
@@ -19,13 +22,27 @@ export default function LoginPage() {
     if (name === "pw") setPw(value);
   };
 
-  const handleSubmit = () => {};
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    try {
+      const response = await login({ loginId: id, password: pw });
+      navigate(routePath.MYPAGE_INFO);
+    } catch (err) {
+      console.error("로그인 실패:", err);
+    }
+  };
   return (
     <>
       <h1 css={titleStyle}>로그인</h1>
       <div css={InputContainer}>
         <Input name="id" placeholder={ID_PLACEHOLDER} onChange={handleInput} />
-        <Input name="pw" placeholder={PW_PLACEHOLDER} onChange={handleInput} />
+        <Input
+          name="pw"
+          type="password"
+          placeholder={PW_PLACEHOLDER}
+          onChange={handleInput}
+        />
         <Button
           label="로그인"
           onClick={handleSubmit}
