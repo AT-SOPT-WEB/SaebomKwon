@@ -40,6 +40,10 @@ export const getNickname = async () => {
   return res.data;
 };
 
-export const modifyNickname = async () => {
-  const res = await axiosInstance.patch("/api/v1/users");
+export const modifyNickname = async (nickname: string) => {
+  const res = await axiosInstance.patch("/api/v1/users", {
+    nickname,
+  });
+
+  return res.data;
 };

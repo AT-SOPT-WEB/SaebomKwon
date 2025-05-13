@@ -27,7 +27,7 @@ export default function Header() {
       }
     };
     fetchNickname();
-  }, []);
+  }, [myNickname]);
 
   return (
     <header css={headerStyle(theme)}>

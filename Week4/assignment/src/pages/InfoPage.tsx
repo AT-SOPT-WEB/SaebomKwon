@@ -13,10 +13,10 @@ export default function InfoPage() {
     setNickname(e.target.value);
   };
 
-
   const handleSubmit = async () => {
     try {
-      await modifyNickname(nickname); 
+      await modifyNickname(nickname);
+      setNickname("");
       alert(`${nickname}님 환영합니당`);
     } catch (err) {
       alert((err as any).response?.data?.message || "에러 발생");
