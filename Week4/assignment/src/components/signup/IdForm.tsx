@@ -12,11 +12,16 @@ export default function IdForm({ onNext }: { onNext: () => void }) {
     setId(e.target.value);
   };
 
+  const handleNext = () => {
+    localStorage.setItem("signupId", id);
+    onNext();
+  };
+
   return (
     <>
       <h3 css={labelStyle}>아이디</h3>
       <Input name="id" placeholder={ID_PLACEHOLDER} onChange={handleInput} />
-      <Button label="다음" onClick={onNext} disabled={id === ""} />
+      <Button label="다음" onClick={handleNext} disabled={id === ""} />
     </>
   );
 }

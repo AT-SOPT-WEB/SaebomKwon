@@ -19,6 +19,11 @@ export default function PwForm({ onNext }: { onNext: () => void }) {
     setPwCheck(e.target.value);
   };
 
+  const handleNext = () => {
+    localStorage.setItem("signupPw", pw);
+    onNext();
+  };
+
   return (
     <>
       <h3 css={labelStyle}>비밀번호</h3>
@@ -36,7 +41,7 @@ export default function PwForm({ onNext }: { onNext: () => void }) {
       />
       <Button
         label="다음"
-        onClick={onNext}
+        onClick={handleNext}
         disabled={pw === "" || pwCheck === "" || !isValid}
       />
     </>
