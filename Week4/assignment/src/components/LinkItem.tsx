@@ -1,13 +1,14 @@
-import theme, { ThemeType } from "@/styles/theme";
-import { css } from "@emotion/react";
+import { useTheme, css } from "@emotion/react";
+import { ThemeType } from "@/styles/theme";
 import { Link } from "react-router-dom";
-export default function LinkItem({
-  to,
-  children,
-}: {
+
+type LinkItemType = {
   to: string;
-  children: string;
-}) {
+  children: React.ReactNode;
+};
+
+export default function LinkItem({ to, children }: LinkItemType) {
+  const theme = useTheme() as ThemeType;
   return (
     <Link to={to} css={LinkStyle(theme)}>
       {children}

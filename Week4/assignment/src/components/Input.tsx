@@ -1,9 +1,14 @@
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import { commonStyle } from "@/styles/common";
-import theme, { ThemeType } from "@/styles/theme";
+import { ThemeType } from "@/styles/theme";
 
-export default function Input({ type }: { type: string }) {
-  const placeholder = type === "id" ? "아이디" : "비밀번호";
+type InputType = {
+  type: string;
+  placeholder: string;
+};
+
+export default function Input({ type, placeholder }: InputType) {
+  const theme = useTheme();
   return (
     <input css={InputStyle(theme)} type="text" placeholder={placeholder} />
   );
