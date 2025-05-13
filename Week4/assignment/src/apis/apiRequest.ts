@@ -29,3 +29,17 @@ export const signup = async ({ loginId, password, nickname }: SignupType) => {
 
   return res.data;
 };
+
+export const getMyNickname = async () => {
+  const res = await axiosInstance.get("/api/v1/users/me");
+  return res.data;
+};
+
+export const getNickname = async () => {
+  const res = await axiosInstance.get("/api/v1/users");
+  return res.data;
+};
+
+export const modifyNickname = async () => {
+  const res = await axiosInstance.patch("/api/v1/users");
+};

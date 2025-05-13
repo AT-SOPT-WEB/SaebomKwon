@@ -7,4 +7,12 @@ const axiosInstance = axios.create({
   },
 });
 
+axiosInstance.interceptors.request.use((config) => {
+  const userId = localStorage.getItem("accessToken");
+  if (userId) {
+    config.headers["userId"] = userId;
+  }
+  return config;
+});
+
 export default axiosInstance;
