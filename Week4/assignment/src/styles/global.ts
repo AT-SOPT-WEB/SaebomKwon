@@ -7,6 +7,4 @@ export const globalStyles = css`
     padding: 0;
     line-height: 1;
   }
-
-  // 등
 `;

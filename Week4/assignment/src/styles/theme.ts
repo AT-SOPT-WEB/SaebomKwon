@@ -1,7 +1,9 @@
+// src/styles/theme.ts
 const theme = {
-  black: "#000",
-  white: "#FFF",
+  colors: {
+    primary: "###32a767",
+  },
 };
 
-export type ThemeType = typeof theme;
 export default theme;
+export type ThemeType = typeof theme;
