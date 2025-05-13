@@ -15,7 +15,7 @@ export default function IdForm({ onNext }: { onNext: () => void }) {
   return (
     <>
       <h3 css={labelStyle}>아이디</h3>
-      <Input type="id" placeholder={ID_PLACEHOLDER} onChange={handleInput} />
+      <Input name="id" placeholder={ID_PLACEHOLDER} onChange={handleInput} />
       <Button label="다음" onClick={onNext} disabled={id === ""} />
     </>
   );

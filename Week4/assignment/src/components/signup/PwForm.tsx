@@ -22,9 +22,15 @@ export default function PwForm({ onNext }: { onNext: () => void }) {
   return (
     <>
       <h3 css={labelStyle}>비밀번호</h3>
-      <Input type="pw" placeholder={PW_PLACEHOLDER} onChange={handlePwChange} />
       <Input
-        type="pwCheck"
+        name="pw"
+        type="password"
+        placeholder={PW_PLACEHOLDER}
+        onChange={handlePwChange}
+      />
+      <Input
+        name="pwCheck"
+        type="password"
         placeholder={PW_CHECK_PLACEHOLDER}
         onChange={handlePwCheckChange}
       />

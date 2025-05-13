@@ -4,18 +4,33 @@ import Button from "@/components/Button";
 import LinkItem from "@/components/LinkItem";
 
 import routePath from "@/routes/routePath";
+import { useState } from "react";
 
 const ID_PLACEHOLDER = "아이디";
 const PW_PLACEHOLDER = "비밀번호";
 
 export default function LoginPage() {
+  const [id, setId] = useState<string>("");
+  const [pw, setPw] = useState<string>("");
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "id") setId(value);
+    if (name === "pw") setPw(value);
+  };
+
+  const handleSubmit = () => {};
   return (
     <>
       <h1 css={titleStyle}>로그인</h1>
       <div css={InputContainer}>
-        <Input type="id" placeholder={ID_PLACEHOLDER} />
-        <Input type="pw" placeholder={PW_PLACEHOLDER} />
-        <Button label="로그인"></Button>
+        <Input name="id" placeholder={ID_PLACEHOLDER} onChange={handleInput} />
+        <Input name="pw" placeholder={PW_PLACEHOLDER} onChange={handleInput} />
+        <Button
+          label="로그인"
+          onClick={handleSubmit}
+          disabled={id === "" || pw === ""}
+        ></Button>
         <LinkItem to={routePath.SIGNUP}>회원가입</LinkItem>
       </div>
     </>

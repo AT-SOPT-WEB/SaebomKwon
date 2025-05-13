@@ -22,7 +22,7 @@ export default function NicknameForm() {
   return (
     <>
       <h3 css={labelStyle}>닉네임</h3>
-      <Input type="id" placeholder={PLACEHOLDER} onChange={handleInput} />
+      <Input name="nickname" placeholder={PLACEHOLDER} onChange={handleInput} />
       <Button label="다음" onClick={handleSubmit} disabled={nickname === ""} />
     </>
   );
