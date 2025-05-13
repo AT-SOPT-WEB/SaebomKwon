@@ -3,7 +3,7 @@ import Form from "@/components/Form";
 export default function LoginPage() {
   return (
     <>
-      <Form />
+      <Form title="로그인" />
     </>
   );
 }

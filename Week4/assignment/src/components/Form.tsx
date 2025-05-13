@@ -1,14 +1,21 @@
 import { css } from "@emotion/react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import LinkItem from "@/components/LinkItem";
 
-export default function Form() {
+import routePath from "@/routes/routePath";
+
+export default function Form({ title }: { title: string }) {
   return (
-    <div css={InputContainer}>
-      <Input type="id" />
-      <Input type="pw" />
-      <Button />
-    </div>
+    <>
+      <h1 css={titleStyle}>{title}</h1>
+      <div css={InputContainer}>
+        <Input type="id" />
+        <Input type="pw" />
+        <Button label="로그인"></Button>
+        <LinkItem to={routePath.SIGNUP}>회원가입</LinkItem>
+      </div>
+    </>
   );
 }
 
@@ -17,4 +24,8 @@ const InputContainer = css`
   flex-direction: column;
   gap: 1rem;
 `;
-("#e5e3e3");
+
+const titleStyle = css`
+  text-align: center;
+  padding: 2rem;
+`;
