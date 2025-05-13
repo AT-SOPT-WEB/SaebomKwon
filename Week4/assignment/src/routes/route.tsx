@@ -13,13 +13,13 @@ const route = [
     element: <Layout />,
     children: [
       {
-        path: routePath.HOME,
+        path: routePath.HOME.slice(1),
         element: <Navigate to={routePath.LOGIN} replace />,
       },
-      { path: routePath.LOGIN, element: <LoginPage /> },
-      { path: routePath.SIGNUP, element: <SignupPage /> },
-      { path: routePath.MYPAGE_INFO, element: <InfoPage /> },
-      { path: routePath.MYPAGE_SEARCH, element: <SearchPage /> },
+      { path: routePath.LOGIN.slice(1), element: <LoginPage /> },
+      { path: routePath.SIGNUP.slice(1), element: <SignupPage /> },
+      { path: routePath.MYPAGE_INFO.slice(1), element: <InfoPage /> },
+      { path: routePath.MYPAGE_SEARCH.slice(1), element: <SearchPage /> },
     ],
   },
 ];
