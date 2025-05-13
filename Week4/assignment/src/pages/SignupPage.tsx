@@ -26,9 +26,10 @@ export default function SignupPage() {
         password: password ?? "",
         nickname: nickname ?? "",
       });
+      alert("회원가입에 성공하셨습니다 ㅊㅊ");
       navigate(routePath.LOGIN);
     } catch (err) {
-      console.error("회원가입 실패", err);
+      alert((err as any).response?.data?.message || "에러 발생");
     } finally {
       localStorage.removeItem("signupId");
       localStorage.removeItem("signupPw");
