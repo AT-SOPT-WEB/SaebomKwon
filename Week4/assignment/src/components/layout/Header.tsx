@@ -10,13 +10,6 @@ export default function Header() {
   const navigate = useNavigate();
   const [myNickname, setMyNickname] = useState("");
 
-  if (!path.includes("mypage")) return null;
-
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    navigate(routePath.LOGIN);
-  };
-
   useEffect(() => {
     const fetchNickname = async () => {
       try {
@@ -28,6 +21,13 @@ export default function Header() {
     };
     fetchNickname();
   }, [myNickname]);
+
+  if (!path.includes("mypage")) return null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate(routePath.LOGIN);
+  };
 
   return (
     <header css={headerStyle(theme)}>

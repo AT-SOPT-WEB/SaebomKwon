@@ -2,7 +2,7 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { css } from "@emotion/react";
 import { useState } from "react";
-import { getMyNickname, modifyNickname } from "@/apis/apiRequest";
+import { modifyNickname } from "@/apis/apiRequest";
 
 const NICKNAME_PLACEHOLDER = "새 닉네임을 입력하세요";
 

@@ -55,6 +55,7 @@ export default function LoginPage() {
   );
 }
 const InputContainer = css`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
