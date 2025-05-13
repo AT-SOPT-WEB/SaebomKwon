@@ -5,12 +5,18 @@ import { ThemeType } from "@/styles/theme";
 type InputType = {
   type: string;
   placeholder: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function Input({ type, placeholder }: InputType) {
+export default function Input({ type, placeholder, onChange }: InputType) {
   const theme = useTheme();
   return (
-    <input css={InputStyle(theme)} type="text" placeholder={placeholder} />
+    <input
+      css={InputStyle(theme)}
+      type="text"
+      placeholder={placeholder}
+      onChange={onChange}
+    />
   );
 }
 
