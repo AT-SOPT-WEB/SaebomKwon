@@ -11,7 +11,6 @@ export default function SignupLayout({ title, children }: LayoutType) {
   return (
     <>
       <h1 css={titleStyle}>{title}</h1>
-
       <div css={formContainer}>{children}</div>
       <p css={textStyle}>
         이미 회원이신가요?

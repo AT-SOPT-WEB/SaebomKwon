@@ -26,7 +26,8 @@ export default function LoginPage() {
 
   const handleSubmit = async () => {
     try {
-      const response = await login({ loginId: id, password: pw });
+      const res = await login({ loginId: id, password: pw });
+      localStorage.setItem("accessToken", res.data.userId);
       navigate(routePath.MYPAGE_INFO);
     } catch (err) {
       console.error("로그인 실패:", err);
