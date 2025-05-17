@@ -1,43 +1,62 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 
-const getUsers = async () => {
+const userId = 100;
+
+const getMyNickname = async (userId: number) => {
   const response = await axios.get(
-    "https://api.atsopt-seminar4.site/api/v1/users"
+    "https://api.atsopt-seminar4.site/api/v1/users/me",
+    {
+      headers: {
+        userId: userId,
+      },
+    }
+  );
+  return response.data.data;
+};
+
+const updateNickname = async (newNickname: string) => {
+  const response = await axios.patch(
+    "https://api.atsopt-seminar4.site/api/v1/users",
+    { nickname: newNickname },
+    {
+      headers: {
+        userId: userId,
+      },
+    }
   );
   return response.data.data;
 };
 
 function App() {
-  const [show, setShow] = useState(false);
+  const [newNickname, setNewNickname] = useState("");
 
-  const { isLoading, isError, data, error, refetch } = useQuery({
-    queryKey: ["users"],
-    queryFn: getUsers,
-    enabled: show, // 기본적으로는 실행되지 않음
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["myNickname", userId],
+    queryFn: () => getMyNickname(userId),
   });
 
-  const handleClick = async () => {
-    setShow(true);
-    await refetch();
-  };
+  const { mutate } = useMutation({
+    mutationFn: (newNickname: string) => updateNickname(newNickname),
+    onSuccess(data) {
+      console.log(data);
+      refetch();
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
+
+  if (isLoading) return <div>로딩 중...</div>;
 
   return (
-    <>
-      <button onClick={handleClick}>리스트 보기</button>
-
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error: {error.message}</p>}
-
-      {show && data && (
-        <ul>
-          {data.nicknameList.map((user: string, index: number) => (
-            <li key={index}>{user}</li>
-          ))}
-        </ul>
-      )}
-    </>
+    <div>
+      내 정보:
+      {data && <span> {data.nickname}</span>}
+      <input type="text" onChange={(e) => setNewNickname(e.target.value)} />
+      <button onClick={() => mutate(newNickname)}>닉네임 수정</button>
+    </div>
   );
 }
 
